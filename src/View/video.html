@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Video</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="../video_site.css" />
+    </head>
+    <body>
+        <script>
+            $(document).ready(function () {
+                $.post(window.location.href, function (data) {
+                    console.log(data);
+                });
+            });
+
+            function getBase64(file) {
+                return new Promise((resolve, reject) => {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = () => resolve(reader.result);
+                    reader.onerror = error => reject(error);
+                });
+            }
+
+            function startVid(sourceData) {
+                let video = document.getElementById('vid');
+                let source = document.getElementById('source');
+
+                source.setAttribute('src', sourceData);
+
+                video.load();
+
+                let vidData = {
+                    "data": sourceData
+                };
+
+                fetch(window.location.href, {
+                    method: 'PUT',
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: vidData
+                });
+            }
+
+            function go() {
+                var file = document.getElementById('f').files[0];
+                var form = new FormData();
+
+                form.append('file', file);
+
+                getBase64(file).then(
+                    data => startVid(data)
+                );
+            }
+        </script>
+
+        <video controls id="vid" autoplay>
+            <source type="video/mp4" id="source" />
+        </video>
+
+        <input type="file" id="f" />
+        <button onclick="go()">Go</button>
+    </body>
+</html>

@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair+Display');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    background-color: #121413;
+    font-family: 'Playfair Display', serif;
+    min-height: 100%;
+    color: white;
+}
+
+body {
+    min-height: 100%;
+}
+
+nav {
+    width: 100%;
+}
+
+#container {
+    display: flex;
+    border-bottom: 1.5px solid white;
+    padding-bottom: .5em;
+    background-color: #0D0F0E;
+}
+
+nav a {
+    color: white;  
+    margin-right: .25em;
+    margin-left: .5em;
+    font-size: 1.5em;
+    text-decoration: none;
+    border-bottom: .5px solid white;
+}
+
+#up {
+    float: right;
+    margin-right: .5em;
+}
+
+section {
+    background-color: #0D0F0E;
+    width: 80%;
+    height: 90vh;
+    margin: auto;
+    margin-top: 3vh;
+    border: 1px solid #272D2E;
+    text-align: center;
+    overflow-x: auto;
+    overflow-y: scroll;
+}
+
+section h1 {
+    font-size: 3em;
+    border-bottom: 1px solid #272D2E;
+}
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
